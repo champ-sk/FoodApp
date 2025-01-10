@@ -1,0 +1,56 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+.img {
+  width: 120px;
+}
+.nav-items > ul {
+  display: flex;
+  list-style-type: none; /* Removes the bullets */
+}
+.nav-items > ul > li {
+  font-size: 24px;
+  padding: 10px;
+  margin: 10px;
+}
+.img {
+  width: 190px;
+  height: 140px;
+}
+.res-card:hover {
+  border: 1px solid gray;
+  cursor: pointer;
+}
+.shimmer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.shimmer-card {
+  width: 200px;
+  height: 400px;
+  margin: 5px;
+  padding: 5px;
+  background-color: #f0f0f0;
+}
+.res-card {
+  width: 200px;
+  height: auto;
+  margin: 5px;
+  padding: 5px;
+  background-color: #f0f0f0;
+}
+.res-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.filter {
+  display: flex;
+}
+.search {
+  padding: 5px;
+}
+.btn {
+  padding: 5px;
+}
