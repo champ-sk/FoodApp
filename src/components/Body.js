@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRes, setListOfRes] = useState([]);
@@ -38,22 +39,27 @@ const Body = () => {
       console.error("Fetch Error:", error);
     }
   };
-
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false)
+    return (
+      <h1>Oops ! you are currently offline.. Please check your network</h1>
+    );
   return listOfRes.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex">
+        <div className="search m-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="search-box border border-black border-solid"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
+          className="px-4 py-2 m-4 bg-green-100 border-spacing-8 rounded-lg"
             onClick={() => {
               const filteredRes = listOfRes.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -64,8 +70,9 @@ const Body = () => {
             Search
           </button>
         </div>
+        <div className="search m-4 p-4 flex items-center">
         <button
-          className="btn"
+          className="m-4 p-2 bg-gray-100 rounded-lg"
           onClick={() => {
             const filteredRes = listOfRes.filter(
               (res) => res.info.avgRating > 4.3
@@ -76,9 +83,11 @@ const Body = () => {
         >
           Fiter the restaurants
         </button>
+        </div>
+       
       </div>
-      <div className="res">
-        <div className="res-container">
+      <div className="flex flex-wrap">
+        <div className="flex flex-wrap">
           {filterListRes.map((restaurant) => (
             <Link
               key={restaurant.info.id}
