@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withPromotedLabel} from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,6 +8,8 @@ const Body = () => {
   const [listOfRes, setListOfRes] = useState([]);
   const [filterListRes, setFilterListRes] = useState([]);
   const [searchText, setSearchText] = useState("");
+ // console.log(listOfRes);
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -28,17 +30,18 @@ const Body = () => {
       // Parse JSON if the response is okay
       const json = await response.json();
       setListOfRes(
-        json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+        json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
       );
       setFilterListRes(
-        json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+        json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
       );
-      //console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+     // console.log(json.data);
     } catch (error) {
       // Handle network or other unexpected errors
       console.error("Fetch Error:", error);
     }
   };
+
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false)
     return (
@@ -59,7 +62,7 @@ const Body = () => {
             }}
           />
           <button
-          className="px-4 py-2 m-4 bg-green-100 border-spacing-8 rounded-lg"
+            className="px-4 py-2 m-4 bg-green-100 border-spacing-8 rounded-lg"
             onClick={() => {
               const filteredRes = listOfRes.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -71,20 +74,19 @@ const Body = () => {
           </button>
         </div>
         <div className="search m-4 p-4 flex items-center">
-        <button
-          className="m-4 p-2 bg-gray-100 rounded-lg"
-          onClick={() => {
-            const filteredRes = listOfRes.filter(
-              (res) => res.info.avgRating > 4.3
-            );
-            console.log(filteredRes);
-            setListOfRes(filteredRes);
-          }}
-        >
-          Fiter the restaurants
-        </button>
+          <button
+            className="m-4 p-2 bg-gray-100 rounded-lg"
+            onClick={() => {
+              const filteredRes = listOfRes.filter(
+                (res) => res.info.avgRating > 4.3
+              );
+             // console.log(filteredRes);
+              setListOfRes(filteredRes);
+            }}
+          >
+            Fiter the restaurants
+          </button>
         </div>
-       
       </div>
       <div className="flex flex-wrap">
         <div className="flex flex-wrap">
@@ -93,7 +95,8 @@ const Body = () => {
               key={restaurant.info.id}
               to={"/restaurants/" + restaurant.info.id}
             >
-              <RestaurantCard resData={restaurant} />
+              {restaurant.info.veg?(<RestaurantCardPromoted resData={restaurant}/>):(<RestaurantCard resData={restaurant} />)}
+              
             </Link>
           ))}
         </div>

@@ -15,5 +15,16 @@ const RestaurantCard = (props)=>{
       <h4>{deliveryTime}</h4>
     </div>
   )
+  };
+
+  export const withPromotedLabel = (RestaurantCard)=>{
+    return (props)=>{
+      return(
+        <div>
+          <label className="absolute bg-green-600 text-white ml-4 p-2 rounded-lg">Pure Veg</label>
+          <RestaurantCard {...props}/>
+          </div>
+      )
+    }
   }
   export default RestaurantCard;
