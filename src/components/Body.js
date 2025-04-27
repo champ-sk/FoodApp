@@ -54,6 +54,7 @@ const Body = () => {
       <div className="filter flex">
         <div className="search m-4 p-4">
           <input
+          data-testid="inputSearch"
             type="text"
             className="search-box border border-black border-solid"
             value={searchText}
