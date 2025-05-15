@@ -4,20 +4,15 @@ A dynamic and responsive food ordering web application that allows users to brow
 
 **🔗 Live Demo:** [food-app-rose-mu.vercel.app](https://food-app-rose-mu.vercel.app/ )
 
+## 🎥 Demo Video
+[Watch the Demo Video](src/Recording.mp4)
+
 ## 📸 Screenshots
 ![image](https://github.com/user-attachments/assets/74403c88-e409-47cf-898d-f7f1d6ed44be)
 ![image](https://github.com/user-attachments/assets/97887828-7f6c-48cb-8a77-437ad98c2322)
 ![image](https://github.com/user-attachments/assets/851629db-5927-4416-ac6b-5b88fc0d5461)
 
 
-
-
-
-<!-- Add 1-2 screenshots of your application here! -->
-<!-- Example:
-![FoodApp Homepage](link_to_your_homepage_screenshot.png)
-![FoodApp Menu](link_to_your_menu_screenshot.png)
--->
 
 ## 🌟 Key Features
 
